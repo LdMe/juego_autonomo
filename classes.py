@@ -1,4 +1,5 @@
 from functions import *
+import time
 
 class spritesheet(object):
     def __init__(self, filename):
@@ -73,13 +74,16 @@ class shots:
         self.ypos = int(y)
         self.radius = 2
         self.dead = false
+        self.start_time = time.time()
     #    self.image = pygame.image.load()
-        self.speed = 10
+        self.speed = 5
         self.dx = dx
         self.dy = dy
         self.angle = angle
         self.color = color
     def move(self,s):
+        if (time.time() - self.start_time > 1):
+           self.dead =TRUE 
         self.xpos += int(self.speed * self.dx)
         self.ypos += int(self.speed * self.dy)
         pygame.draw.circle(s,self.color,(self.xpos,self.ypos),self.radius)
@@ -198,7 +202,7 @@ class villager:
         self.size = size
         self.rect = pygame.Rect(x,y,size,size)
     #    self.image = pygame.image.load()
-        self.speed = 6
+        self.speed = 4
         self.dx = 0.00
         self.dead = false
         self.dy = 0.00
